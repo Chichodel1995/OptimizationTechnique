@@ -8,23 +8,14 @@ namespace SimpleLinkedList
 {
     class CSimpleNode
     {
+        //Acá se coloca la información que entrará de la propiedad "Information".
         private string information;
-        private CSimpleNode nextNode;
-        public CSimpleNode(string info)
-        {
-            information = info;
-            nextNode = null;
-        }
 
-        public string Informacion
-        {
-            get { return this.information; }
-        }
+        //Esta variable de referencia se utiliza para a puntar al siguiente nodo.
+        private CSimpleNode nextNode = null;
 
-        public CSimpleNode NextNode
-        {
-            get { return this.nextNode; }
-            set { this.nextNode = value; }
-        }
+        //Propiedades.
+        public string Information { get => information; set => information = value; }
+        internal CSimpleNode NextNode { get => nextNode; set => nextNode = value; }
     }
 }

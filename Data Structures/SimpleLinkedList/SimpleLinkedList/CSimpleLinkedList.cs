@@ -9,64 +9,52 @@ namespace SimpleLinkedList
 {
     class CSimpleLinkedList
     {
-        CSimpleNode inicio, end;
-
+        //Es el encabezado de la lista.
+        CSimpleNode inicio;
+        //Esta variable de referiancia nos permite trabajar con la lista.
+        CSimpleNode work;
         public CSimpleLinkedList()
         {
-            inicio = end = null;
+            //Instanciamos el inicio.
+            inicio = new CSimpleNode();
+            //Como es una lista vacia, el siguiente node esta vacío.
+            inicio.NextNode = null;
         }
 
-        public CSimpleNode Inicio
+        //Nos permite recorrer de forma secuencial a cada uno de los nodos.
+        public void Transverse(ListBox pList)
         {
-            get { return this.inicio; }
-            set { this.inicio = value; }
+            pList.Items.Clear();
+            work = inicio;
+            while (work.NextNode != null)
+            {
+                work = work.NextNode;
+                string info = work.Information;
+                pList.Items.Add(info);    
+            }            
         }
 
-        public CSimpleNode End
+        //Se ingresa el valor en el último nodo de la lista.
+        public void Add(string pInformation)
         {
-            get { return this.end; }
-            set { this.end = value;  }
-        }
+            //Iniciamos con el valor vacio de inicio.
+            work = inicio;
 
-        public bool ItsEmpty() //Cumple la función de verificar si la lista se encuentra vacia o no.
-        {
-            if (inicio == null && end == null)
+            //Recorremos hasta el final para tener el último valor.
+            while(work.NextNode != null)
             {
-                return true;
+                work = work.NextNode;
             }
-            else
-            {
-                return false;
-            }
-        }
+            //Instanciamos una variable de referencia.
+            CSimpleNode temporary = new CSimpleNode();
+            //Ingresamos el valor ingresado por parámetro.
+            temporary.Information = pInformation;
 
-        public void InsertOpposite(string date)// Cumple la función de Insertar un nodo con su tipo de dato.
-        {
-            CSimpleNode node = new CSimpleNode(date); // Recordar que en esa clase tenemos un constructor que recibe un parámetro de tipo de dato INT.
-            if (ItsEmpty() == true)
-            {
-              /* Almacenamos en dos variables del mismo valor. 
-                "inicio", tendrá en valor ingresado por el parámatro del objeto declarado "node".
-                "end", no se porque ingresa el mismo valor.  
-              */
-                inicio = node;
-                end = node;
-            }
-            else
-            {
-                // Al saber que no está vacio, pasamos alguiente node ingresando el valor "inicio" porque no podemos pasarle un objeto
-                node.NextNode = inicio;
-            }
-            inicio = node;
-        }
+            //Finalizamos correctamente.
+            temporary.NextNode = null;
 
-        public void ShowList()
-        {
-            if (ItsEmpty() == true)
-            {
-                MessageBox.Show("22");
-            }
+            //Se ingresa el valor al último nodo encontrado con el recién creado.
+            work.NextNode = temporary;
         }
-
     }
 }
