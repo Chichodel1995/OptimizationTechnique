@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace SimpleLinkedList
         CSimpleNode inicio;
         //Esta variable de referiancia nos permite trabajar con la lista.
         CSimpleNode work;
+
+        CSimpleNode work2;
         public CSimpleLinkedList()
         {
             //Instanciamos el inicio.
@@ -55,6 +58,55 @@ namespace SimpleLinkedList
 
             //Se ingresa el valor al último nodo encontrado con el recién creado.
             work.NextNode = temporary;
+        }
+
+        public void Empty(ListBox pList)
+        {
+            inicio.NextNode = null;
+            pList.Items.Clear();
+            pList.Items.Add("The list was emptied.");
+            //Al indicar que después del nodo "inicio" sea null, el Gargabe Collector se encargará de liberar la memoria.
+            //Si fuera con otro lenguaje como C++, nosotros mismo debemos encargarnos manualmente.
+        }
+
+        public bool ItsEmpty(ListBox pList)
+        {
+            
+            pList.Items.Clear();
+            if (inicio.NextNode == null)
+            {
+                pList.Items.Add(true);
+                return true;
+            }
+            else
+            {
+                pList.Items.Add(false);
+                return false;
+            }
+        }
+
+        public CSimpleNode SearchNode(ListBox pList, string pInfo)
+        {
+            if (ItsEmpty(pList) == true)
+            {
+                pList.Items.Clear();
+                pList.Items.Add("The list is empty");
+                return null;
+            }
+            else { pList.Items.Clear(); }
+
+            work2 = inicio;
+
+            while (work2.NextNode != null){
+                work2 = work2.NextNode;
+
+                if (work2.Information == pInfo)
+                {
+                    return work2;
+                }
+            }
+
+            return null;
         }
     }
 }
