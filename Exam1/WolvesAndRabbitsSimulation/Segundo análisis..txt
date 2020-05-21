@@ -1,0 +1,12 @@
+Se encontró otro método que toma un procesamiento alto para la CPU.
+
+Se encuentra en la clase World.
+El método es :
+
+ public void Add(GameObject obj)
+        {
+            objects = objects.Concat(new GameObject[] { obj }).ToArray();
+        }
+
+- Consiste en agregar los objetos ingresado por el parámetro a la nueva colección de tipo GameOject con eso concatena a la colección objects y guardar el valor final a la misma colección.-
+- Eso genera mucho recurso porque se está guardando todos objetos en esa misma y termina teniendo un tamaño demasiado grande en una misma memoria.-
