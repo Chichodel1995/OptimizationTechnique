@@ -25,7 +25,7 @@ namespace WolvesAndRabbitsSimulation.Simulation
         {
             Color = Color.White;
         }
-
+        
         public override void UpdateOn(World forest)
         {
             EatSomeGrass(forest);
@@ -63,7 +63,6 @@ namespace WolvesAndRabbitsSimulation.Simulation
                 }
             }
         }
-
         private void GrowOld(World forest)
         {
             age++;
@@ -75,7 +74,6 @@ namespace WolvesAndRabbitsSimulation.Simulation
             food -= FOOD_CONSUMPTION;
             if (food <= 0) { Die(forest); }
         }
-
         private void Die(World forest)
         {
             if (forest.Random(1, 10) <= 10 * DEATH_PROBABILITY)
@@ -83,7 +81,6 @@ namespace WolvesAndRabbitsSimulation.Simulation
                 forest.Remove(this);
             }
         }
-
         private void Wander(World forest)
         {
             Forward(forest.Random(1, 5));

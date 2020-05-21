@@ -10,11 +10,10 @@ namespace WolvesAndRabbitsSimulation.Simulation
 {
     class Grass : GameObject
     {
-        public const int PATCH_SIZE = 2;
+        public const int PATCH_SIZE = 2; //Es el tamaño de parche.
 
         private int growth;
-        private int ticks = 0;
-        
+        private int ticks = 0;      
         public int Growth
         {
             get { return growth; }
@@ -26,12 +25,10 @@ namespace WolvesAndRabbitsSimulation.Simulation
                 Color = Color.FromArgb(growth, 0, 255, 0);
             }
         }
-
         public override Rectangle Bounds
         {
             get { return new Rectangle(Position, new Size(PATCH_SIZE, PATCH_SIZE)); }
         }
-
         public override void UpdateOn(World world)
         {
             if (++ticks > 10)
