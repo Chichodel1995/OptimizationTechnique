@@ -1,0 +1,26 @@
+Este es el primer análisis.
+
+Nos encontramos con dos métodos medido por el generador de perfil de Visual Studio notificando que tiene una concentración de carga.
+
+Los métodos notificados se encuentran en la clase World y son:
+
+ public double Dist(PointF a, PointF b)
+        {
+            return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
+        }
+
+- El fin de este código es devolver el resultado de una raíz cuadrada y con eso dar la distancia en la que se encuentra ese objeto deseado.-
+
+ public IEnumerable<GameObject> ObjectsAt(Point pos)
+        {
+            return GameObjects.Where(each =>
+            {
+                Rectangle bounds = each.Bounds;
+                PointF center = new PointF((bounds.Left + bounds.Right - 1) / 2.0f,
+                                           (bounds.Top + bounds.Bottom - 1) / 2.0f);
+                return Dist(pos, center) <= bounds.Width / 2.0f
+                    && Dist(pos, center) <= bounds.Height / 2.0f;
+            });
+        }
+
+-Te método obtiene en centro entre los límites de cada objeto y luego retorna el valor si es menor al resultado que da en el método Dist.
