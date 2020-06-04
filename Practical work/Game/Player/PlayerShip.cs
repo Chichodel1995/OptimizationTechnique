@@ -29,7 +29,7 @@ namespace Game
         public PlayerShip(int shipIndex)
         {
             this.shipIndex = shipIndex;
-            LoadImage();
+            //LoadImage();
 
             EventHandler.KeyDown += OnKeyDown;
             EventHandler.KeyUp += OnKeyUp;
@@ -177,12 +177,12 @@ namespace Game
         
         public override void DrawOn(Graphics graphics)
         {
-            graphics.DrawImage(LoadImage(), Bounds);
+            graphics.DrawImage(LoadImage(),Bounds);
         }
-        
+        Image[] ships = Spritesheet.Load(@"Resources\shipsheetparts.png", new Size(200, 200));
         private Image LoadImage()
         {
-            Image[] ships = Spritesheet.Load(@"Resources\shipsheetparts.png", new Size(200, 200));
+            
             //foreach (Image img in ships)
            // {
                 //img.RotateFlip(RotateFlipType.Rotate270FlipNone);
